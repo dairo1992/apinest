@@ -12,5 +12,6 @@ import { ClientesModule } from 'src/clientes/clientes.module';
   imports: [TypeOrmModule.forFeature([Persona]), RolesModule, ClientesModule],
   controllers: [PersonasController],
   providers: [PersonasService, RolesService, ClientesService],
+  exports: [TypeOrmModule, PersonasService],
 })
 export class PersonasModule {}

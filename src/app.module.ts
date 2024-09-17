@@ -3,6 +3,7 @@ import { PersonasModule } from './personas/personas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientesModule } from './clientes/clientes.module';
 import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { RolesModule } from './roles/roles.module';
     PersonasModule,
     ClientesModule,
     RolesModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

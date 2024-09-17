@@ -30,11 +30,11 @@ export class PersonasService {
       });
 
       if (!ROL) {
-        throw new BadRequestException(`${ROL} no existe`);
+        throw new BadRequestException(`ESTE ROL NO EXISTE`);
       }
 
-      if (!CONJUNTO) {
-        throw new BadRequestException(`${CONJUNTO} no existe`);
+      if (!CONJUNTO && createPersonaDto.CONJUNTO != 0) {
+        throw new BadRequestException(`ESTE CONJUNTO NO EXISTE`);
       }
 
       return await this.personasRepository.save({
@@ -64,11 +64,13 @@ export class PersonasService {
     });
 
     if (!ROL) {
-      throw new BadRequestException(`${ROL} no existe`);
+      console.log(ROL);
+      throw new BadRequestException(`ESTE ROL NO EXISTE`);
     }
 
-    if (!CONJUNTO) {
-      throw new BadRequestException(`${CONJUNTO} no existe`);
+    if (!CONJUNTO && updatePersonaDto.CONJUNTO != 0) {
+      console.log(CONJUNTO);
+      throw new BadRequestException(`ESTE CONJUNTO NO EXISTE`);
     }
     return await this.personasRepository.update(id, {
       ...updatePersonaDto,
@@ -80,5 +82,9 @@ export class PersonasService {
 
   async remove(id: number) {
     return await this.personasRepository.softDelete({ ID: id }); //no elimina el registro, solo actualizo campo deleteAt y lo omite en el findAll
+  }
+
+  async findOneByDoc(USUARIO: number) {
+    return await this.personasRepository.findOneBy({ DOCUMENTO: USUARIO });
   }
 }
